@@ -14,4 +14,9 @@ class Berita extends Model
         'judul_berita',
         'deskripsi',
     ];
+
+    public function komentars()
+    {
+        return $this->hasMany(Komentar::class);
+    }
 }

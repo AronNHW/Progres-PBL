@@ -29,6 +29,8 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::view('/divisi', 'user.divisi')->name('divisi');
     Route::view('/profil', 'user.profil')->name('profil');
     Route::get('/berita', [UserBeritaController::class, 'index'])->name('berita');
+    Route::get('/berita/{berita}', [UserBeritaController::class, 'show'])->name('berita.show');
+    Route::post('/berita/{berita}/komentar', [UserBeritaController::class, 'storeKomentar'])->name('komentar.store');
     Route::view('/pendaftaran', 'user.pendaftaran')->name('pendaftaran');
     Route::view('/prestasi', 'user.prestasi')->name('prestasi');
     Route::view('/aspirasi', 'user.aspirasi')->name('aspirasi');
