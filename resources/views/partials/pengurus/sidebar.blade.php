@@ -7,21 +7,21 @@
   <nav class="sidebar-nav">
     <ul>
       <li>
-        <a href="{{ route('pengurus.dashboard') }}" class="active">
-          <i class="fas fa-home-alt nav-icon"></i> Dashboard
+        <a href="{{ route('pengurus.dashboard') }}" class="{{ request()->routeIs('pengurus.dashboard') ? 'active' : '' }}">
+          <i class="fas fa-home-alt nav-icon"></i><span class="menu-text"> Dashboard</span>
         </a>
       </li>
 
-      <li class="nav-title">Admin</li>
+      <li class="nav-title">Pengurus</li>
 
-      <li><a href="#"><i class="fas fa-user nav-icon"></i> Data User</a></li>
-      <li><a href="#"><i class="fas fa-users nav-icon"></i> Data Anggota Hima-TI <i class="fas fa-chevron-down arrow-icon"></i></a></li>
-      <li><a href="#"><i class="fas fa-sitemap nav-icon"></i> Data Divisi</a></li>
-      <li><a href="#"><i class="fas fa-user-friends nav-icon"></i> Data Anggota Per-Divisi</a></li>
-      <li><a href="#"><i class="fas fa-trophy nav-icon"></i> Data Prestasi Mahasiswa <i class="fas fa-chevron-down arrow-icon"></i></a></li>
-      <li><a href="#"><i class="fas fa-newspaper nav-icon"></i> Data Berita</a></li>
-      <li><a href="#"><i class="fas fa-bullhorn nav-icon"></i> Data Aspirasi</a></li>
-      <li><a href="#"><i class="fas fa-cog nav-icon"></i> Setting <i class="fas fa-chevron-down arrow-icon"></i></a></li>
+      <li><a href="#"><i class="fas fa-user nav-icon"></i><span class="menu-text"> Data User</span></a></li>
+      <li><a href="#"><i class="fas fa-users nav-icon"></i><span class="menu-text"> Data Anggota Hima-TI </span><i class="fas fa-chevron-down arrow-icon"></i></a></li>
+      <li><a href="#"><i class="fas fa-sitemap nav-icon"></i><span class="menu-text"> Data Divisi</span></a></li>
+      <li><a href="#"><i class="fas fa-user-friends nav-icon"></i><span class="menu-text"> Data Anggota Per-Divisi</span></a></li>
+      <li><a href="#"><i class="fas fa-trophy nav-icon"></i><span class="menu-text"> Data Prestasi Mahasiswa </span></a></li>
+      <li><a href="{{ route('pengurus.berita.index') }}" class="{{ request()->routeIs('pengurus.berita.*') ? 'active' : '' }}"><i class="fas fa-newspaper nav-icon"></i><span class="menu-text"> Data Berita</span></a></li>
+      <li><a href="{{ route('pengurus.aspirasi.index') }}" class="{{ request()->routeIs('pengurus.aspirasi.*') ? 'active' : '' }}"><i class="fas fa-bullhorn nav-icon"></i><span class="menu-text"> Data Aspirasi</span></a></li>
+      <li><a href="#"><i class="fas fa-cog nav-icon"></i><span class="menu-text"> Setting </span><i class="fas fa-chevron-down arrow-icon"></i></a></li>
     </ul>
   </nav>
 </aside>

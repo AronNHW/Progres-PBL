@@ -8,7 +8,24 @@
             <h1>Kotak Aspirasi</h1>
             <p>Sampaikan aspirasi, kritik, dan saran Anda untuk HMTI yang lebih baik.</p>
         </div>
-        <form action="#" method="POST">
+                @if(session('ok'))
+            <div class="alert alert-success" style="padding:10px 12px;border-radius:8px;background:#ecfdf5;color:#065f46;margin-bottom:12px;">
+                {{ session('ok') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger" style="padding:10px 12px;border-radius:8px;background:#fef2f2;color:#991b1b;margin-bottom:12px;">
+                <strong>Oops! Ada beberapa masalah dengan input Anda:</strong><br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('user.aspirasi.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="nama">Nama Lengkap</label>
@@ -24,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label for="aspirasi">Aspirasi Anda</label>
-                <textarea id="aspirasi" name="aspirasi" placeholder="Tuliskan aspirasi, kritik, atau saran Anda di sini..."></textarea>
+                <textarea id="aspirasi" name="pesan" placeholder="Tuliskan aspirasi, kritik, atau saran Anda di sini..."></textarea>
             </div>
             <button type="submit" class="submit-btn">Kirim Aspirasi</button>
         </form>

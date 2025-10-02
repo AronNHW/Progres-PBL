@@ -15,11 +15,11 @@
     </div>
     <div class="card">
       <div class="card-icon"><i class="fas fa-newspaper"></i></div>
-      <div class="card-info"><h3>Data Berita</h3><p>0</p></div>
+      <div class="card-info"><h3>Data Berita</h3><p>{{ $beritaCount }}</p></div>
     </div>
     <div class="card">
       <div class="card-icon"><i class="fas fa-envelope"></i></div>
-      <div class="card-info"><h3>Data Aspirasi</h3><p>0</p></div>
+      <div class="card-info"><h3>Data Aspirasi</h3><p>{{ $aspirasiCount }}</p></div>
     </div>
   </div>
 

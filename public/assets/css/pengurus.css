@@ -4,7 +4,7 @@ a{text-decoration:none;color:inherit}
 ul{list-style:none}
 
 /* Sidebar */
-.sidebar{width:250px;background:#fff;height:100vh;position:fixed;left:0;top:0;display:flex;flex-direction:column;border-right:1px solid #e9ecef}
+.sidebar{width:250px;background:#fff;height:100vh;position:fixed;left:0;top:0;display:flex;flex-direction:column;border-right:1px solid #e9ecef; transition: width 0.3s ease;}
 .sidebar-header{display:flex;align-items:center;justify-content:space-between;padding:20px;border-bottom:1px solid #e9ecef}
 .sidebar-header img.logo {
     width: 50px;         /* ukuran logo */
@@ -23,7 +23,7 @@ ul{list-style:none}
 .sidebar-nav ul .nav-title{font-size:11px;font-weight:600;color:#adb5bd;text-transform:uppercase;padding:20px 20px 5px}
 
 /* Main + Cards + Table (lanjutkan sesuai file asli) */
-.main-content{margin-left:250px;width:calc(100% - 250px);padding:20px 30px}
+.main-content{margin-left:250px;width:calc(100% - 250px);padding:20px 30px; transition: margin-left 0.3s ease, width 0.3s ease;}
 .topbar{display:flex;justify-content:flex-end;align-items:center;padding-bottom:25px}
 .user-profile{display:flex;align-items:center;cursor:pointer}
 .user-profile span{margin-right:15px;font-weight:500;font-size:15px}
@@ -50,5 +50,42 @@ ul{list-style:none}
     background: none !important; /* matikan background biru */
 }
 
+.sidebar-nav ul li a .arrow-icon {
+    margin-left: auto;
+    transition: transform 0.3s;
+}
 
+/* Collapsed Sidebar Styles */
+.sidebar.collapsed {
+    width: 88px; /* Lebar sidebar saat diciutkan */
+}
 
+.sidebar.collapsed .sidebar-header {
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-header .logo,
+.sidebar.collapsed .menu-text,
+.sidebar.collapsed .nav-title,
+.sidebar.collapsed .arrow-icon {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-nav ul li {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.sidebar.collapsed .sidebar-nav ul li a {
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-nav ul li a .nav-icon {
+    margin-right: 0;
+}
+
+/* Expanded Main Content */
+.main-content.expanded {
+    margin-left: 88px;
+    width: calc(100% - 88px);
+}

@@ -13,6 +13,8 @@
 
   {{-- CSS utama --}}
   <link rel="stylesheet" href="{{ asset('assets/css/pengurus.css') }}">
+
+  @stack('styles')
 </head>
 <body>
   @include('partials.pengurus.sidebar')
@@ -29,5 +31,18 @@
       @yield('content')
     </section>
   </main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuIcon = document.querySelector('.menu-icon');
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+
+    menuIcon.addEventListener('click', function () {
+      sidebar.classList.toggle('collapsed');
+      mainContent.classList.toggle('expanded');
+    });
+  });
+</script>
 </body>
 </html>
