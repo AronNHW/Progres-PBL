@@ -1,4 +1,4 @@
-@extends('layouts.pengurus')
+@extends('layouts.admin')
 
 @section('title', 'Edit Berita')
 
@@ -6,7 +6,7 @@
     <h1>Edit Berita</h1>
 
     <div class="form-container">
-        <form action="{{ route('pengurus.berita.update', $berita) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.berita.update', $berita) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">

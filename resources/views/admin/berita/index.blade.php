@@ -1,4 +1,4 @@
-@extends('layouts.pengurus')
+@extends('layouts.admin')
 
 @section('title', 'Kelola Berita')
 
@@ -7,7 +7,7 @@
 
     <section class="data-table-container" style="margin-top:12px">
         <div style="margin-bottom:12px;">
-            <a href="{{ route('pengurus.berita.create') }}" class="btn-green">Tambah Berita</a>
+            <a href="{{ route('admin.berita.create') }}" class="btn-green">Tambah Berita</a>
         </div>
 
         @if(session('ok'))
@@ -35,9 +35,9 @@
                         <td>{{ $berita->created_at->format('d M Y H:i') }}</td>
                         <td>
                             <div style="display: flex; gap: 6px;">
-                                <a class="btn-blue" href="{{ route('pengurus.berita.show', $berita) }}">Lihat</a>
-                                <a class="btn-yellow" href="{{ route('pengurus.berita.edit', $berita) }}">Edit</a>
-                                <form action="{{ route('pengurus.berita.destroy', $berita) }}" method="POST" onsubmit="return confirm('Hapus berita ini?')">
+                                <a class="btn-blue" href="{{ route('admin.berita.show', $berita) }}">Lihat</a>
+                                <a class="btn-yellow" href="{{ route('admin.berita.edit', $berita) }}">Edit</a>
+                                <form action="{{ route('admin.berita.destroy', $berita) }}" method="POST" onsubmit="return confirm('Hapus berita ini?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn-red">Hapus</button>

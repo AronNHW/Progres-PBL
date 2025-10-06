@@ -9,7 +9,7 @@
         <div class="berita-grid">
             @forelse ($beritas as $berita)
                 <div class="berita-card">
-                    <img src="{{ asset('uploads/' . $berita->foto_berita) }}" alt="Foto Berita" class="card-img">
+                    <img src="{{ asset('storage/' . $berita->foto_berita) }}" alt="Foto Berita" class="card-img">
                     <div class="card-body">
                         <h2 class="card-title">{{ $berita->judul_berita }}</h2>
                         <p class="card-date">{{ $berita->created_at->format('d F Y') }}</p>

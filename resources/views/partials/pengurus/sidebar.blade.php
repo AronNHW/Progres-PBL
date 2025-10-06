@@ -18,7 +18,7 @@
       <li><a href="#"><i class="fas fa-users nav-icon"></i><span class="menu-text"> Data Anggota Hima-TI </span><i class="fas fa-chevron-down arrow-icon"></i></a></li>
       <li><a href="#"><i class="fas fa-sitemap nav-icon"></i><span class="menu-text"> Data Divisi</span></a></li>
       <li><a href="#"><i class="fas fa-user-friends nav-icon"></i><span class="menu-text"> Data Anggota Per-Divisi</span></a></li>
-      <li><a href="#"><i class="fas fa-trophy nav-icon"></i><span class="menu-text"> Data Prestasi Mahasiswa </span></a></li>
+      <li><a href="{{ route('pengurus.prestasi.index') }}" class="{{ request()->routeIs('pengurus.prestasi.*') ? 'active' : '' }}"><i class="fas fa-trophy nav-icon"></i><span class="menu-text"> Data Prestasi Mahasiswa </span></a></li>
       <li><a href="{{ route('pengurus.berita.index') }}" class="{{ request()->routeIs('pengurus.berita.*') ? 'active' : '' }}"><i class="fas fa-newspaper nav-icon"></i><span class="menu-text"> Data Berita</span></a></li>
       <li><a href="{{ route('pengurus.aspirasi.index') }}" class="{{ request()->routeIs('pengurus.aspirasi.*') ? 'active' : '' }}"><i class="fas fa-bullhorn nav-icon"></i><span class="menu-text"> Data Aspirasi</span></a></li>
       <li><a href="#"><i class="fas fa-cog nav-icon"></i><span class="menu-text"> Setting </span><i class="fas fa-chevron-down arrow-icon"></i></a></li>

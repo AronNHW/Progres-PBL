@@ -7,7 +7,7 @@
         <div class="berita-detail">
             <h1 class="berita-title">{{ $berita->judul_berita }}</h1>
             <p class="berita-date">{{ $berita->created_at->format('d F Y') }}</p>
-            <img src="{{ asset('uploads/' . $berita->foto_berita) }}" alt="Foto Berita" class="berita-img">
+            <img src="{{ asset('storage/' . $berita->foto_berita) }}" alt="Foto Berita" class="berita-img">
             <div class="berita-content" style="white-space: pre-wrap;">
                 {!! $berita->deskripsi !!}
             </div>

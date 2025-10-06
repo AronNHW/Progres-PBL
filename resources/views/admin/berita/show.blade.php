@@ -1,4 +1,4 @@
-@extends('layouts.pengurus')
+@extends('layouts.admin')
 
 @section('title', 'Detail Berita')
 
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="card-footer">
-            <a href="{{ route('pengurus.berita.index') }}" class="btn-back">Kembali ke Daftar</a>
+            <a href="{{ route('admin.berita.index') }}" class="btn-back">Kembali ke Daftar</a>
         </div>
     </div>
 @endsection
