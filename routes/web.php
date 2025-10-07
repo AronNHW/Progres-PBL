@@ -22,7 +22,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('aspirasi/print', [AdminAspirasiController::class, 'printPdf'])->name('aspirasi.printPdf');
     Route::resource('aspirasi', AdminAspirasiController::class)->only(['index', 'show', 'destroy']);
     Route::resource('berita', AdminBeritaController::class);
-    Route::resource('prestasi', AdminPrestasiController::class);
+    Route::resource('prestasi', AdminPrestasiController::class)->except(['create', 'show', 'edit']);
     Route::view('/mahasiswa-bermasalah', 'admin.bermasalah.index')->name('mahasiswa-bermasalah');
 });
 
@@ -31,7 +31,7 @@ Route::prefix('pengurus')->name('pengurus.')->group(function () {
   Route::get('aspirasi/print', [AspirasiController::class, 'printPdf'])->name('aspirasi.printPdf');
   Route::resource('aspirasi', AspirasiController::class)->only(['index', 'show', 'destroy']);
   Route::resource('berita', BeritaController::class);
-  Route::resource('prestasi', PrestasiController::class);
+  Route::resource('prestasi', PrestasiController::class)->except(['create', 'show', 'edit']);
 });
 
 Route::prefix('user')->name('user.')->group(function () {

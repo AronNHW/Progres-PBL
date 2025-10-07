@@ -32,6 +32,8 @@
     </section>
   </main>
 
+  @stack('scripts')
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const menuIcon = document.querySelector('.menu-icon');
