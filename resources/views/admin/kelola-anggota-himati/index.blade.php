@@ -33,7 +33,13 @@
 
 @section('content')
 <div id="anggota-aktif-page">
-    <h1>Anggota Aktif Hima-TI</h1>
+    <h1>
+        @if(isset($divisi))
+            Anggota Aktif Divisi {{ $divisi->nama_divisi }}
+        @else
+            Anggota Aktif Hima-TI
+        @endif
+    </h1>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -125,10 +131,9 @@
             <div class="form-group">
                 <label for="edit_divisi">Divisi</label>
                 <select id="edit_divisi" name="divisi" required>
-                    <option value="kaderisasi">Kaderisasi</option>
-                    <option value="media_informasi">Media Informasi</option>
-                    <option value="technopreneurship">Technopreneurship</option>
-                    <option value="public_relation">Public Relation</option>
+                    @foreach($semua_divisi as $div)
+                        <option value="{{ $div->nama_divisi }}">{{ $div->nama_divisi }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="modal-footer">

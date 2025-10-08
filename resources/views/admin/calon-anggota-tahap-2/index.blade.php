@@ -41,7 +41,7 @@
 
 @section('content')
 <div id="calon-anggota-page">
-    <h1>Konfirmasi Wawancara Calon Anggota</h1>
+    <h1>Data Calon Anggota Tahap 2 Hima-TI</h1>
 
     @if(session('success'))
         <div class="alert alert-success">

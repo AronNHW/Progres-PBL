@@ -10,6 +10,7 @@ class Pendaftaran extends Model
         'name',
         'nim',
         'hp',
+        'prodi',
         'divisi',
         'alasan_bergabung',
         'status',

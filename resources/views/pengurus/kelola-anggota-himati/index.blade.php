@@ -16,7 +16,13 @@
 
 @section('content')
 <div id="anggota-aktif-page">
-    <h1>Anggota Aktif Hima-TI</h1>
+    <h1>
+        @if(isset($divisi))
+            Anggota Aktif Divisi {{ $divisi->nama_divisi }}
+        @else
+            Anggota Aktif Hima-TI
+        @endif
+    </h1>
 
     <section class="table-container">
         <table class="data-table">

@@ -41,7 +41,7 @@
 
 @section('content')
 <div id="calon-anggota-page">
-    <h1>Kelola Calon Anggota Tahap 2</h1>
+    <h1>Data Calon Anggota Tahap 2 Hima-TI</h1>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -55,8 +55,8 @@
                 <tr>
                     <th>Nama Lengkap</th>
                     <th>NIM</th>
-                    <th>Prodi</th>
-                    <th>Divisi</th>
+                    <th>Nomor HP</th>
+                    <th>Divisi Tujuan</th>
                     <th>Status</th>
                     <th>Aksi</th>
                 </tr>
@@ -66,11 +66,11 @@
                     <tr>
                         <td>{{ $candidate->name }}</td>
                         <td>{{ $candidate->nim ?? 'N/A' }}</td>
-                        <td>{{ $candidate->prodi ?? 'N/A' }}</td>
+                        <td>{{ $candidate->hp ?? 'N/A' }}</td>
                         <td>{{ $candidate->divisi }}</td>
                         <td>
-                            <span class="status-badge status-{{ Str::slug($candidate->status) }}">
-                                {{ $candidate->status }}
+                            <span class="status-badge status-pending">
+                                Menunggu Wawancara
                             </span>
                         </td>
                         <td class="action-btns">
@@ -94,8 +94,8 @@
             <div class="modal-body-content">
                 <div class="candidate-info"><strong>Nama</strong> <span id="view_name"></span></div>
                 <div class="candidate-info"><strong>NIM</strong> <span id="view_nim"></span></div>
-                <div class="candidate-info"><strong>Prodi</strong> <span id="view_prodi"></span></div>
-                <div class="candidate-info"><strong>Divisi</strong> <span id="view_divisi"></span></div>
+                <div class="candidate-info"><strong>Nomor HP</strong> <span id="view_hp"></span></div>
+                <div class="candidate-info"><strong>Divisi Tujuan</strong> <span id="view_divisi"></span></div>
                 <div class="candidate-info"><strong>Alasan Bergabung</strong> <span id="view_alasan_bergabung"></span></div>
                 <div class="candidate-info"><strong>Status Saat Ini</strong> <span id="view_status"></span></div>
             </div>
@@ -129,14 +129,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = JSON.parse(btn.dataset.candidate);
             page.querySelector('#view_name').textContent = data.name;
             page.querySelector('#view_nim').textContent = data.nim;
-            page.querySelector('#view_prodi').textContent = data.prodi;
+            page.querySelector('#view_hp').textContent = data.hp;
             page.querySelector('#view_divisi').textContent = data.divisi;
+            page.querySelector('#view_alasan_bergabung').textContent = data.alasan_bergabung;
+            page.querySelector('#view_status').textContent = data.status === 'Approved Stage 1' ? 'Lolos Tahap 1' : data.status;
 
             // Set form actions
             const passForm = page.querySelector('#passInterviewForm');
             const failForm = page.querySelector('#failInterviewForm');
-            passForm.action = `/admin/calon-anggota/${data.id}/pass-interview`;
-            failForm.action = `/admin/calon-anggota/${data.id}/fail-interview`;
+            passForm.action = `/pengurus/calon-anggota/${data.id}/pass-interview`;
+            failForm.action = `/pengurus/calon-anggota/${data.id}/fail-interview`;
 
             viewModal.style.display = 'block';
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pengurus;
 
 use App\Http\Controllers\Controller;
+use App\Models\Divisi;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 
@@ -57,7 +58,7 @@ class AnggotaController extends Controller
         $pendaftaran->status = 'Anggota Aktif';
         $pendaftaran->save();
 
-        return redirect()->route('pengurus.calon-anggota-tahap-2.index')->with('success', 'Calon anggota berhasil diterima menjadi anggota aktif.');
+        return redirect()->route('pengurus.kelola-anggota-himati.index')->with('success', 'Calon anggota berhasil diterima menjadi anggota aktif.');
     }
 
     public function rejectCandidateStage2(Pendaftaran $pendaftaran)
@@ -68,9 +69,28 @@ class AnggotaController extends Controller
         return redirect()->route('pengurus.calon-anggota-tahap-2.index')->with('success', 'Calon anggota berhasil ditolak pada tahap 2.');
     }
 
+    public function passInterview(Pendaftaran $pendaftaran)
+    {
+        $pendaftaran->status = 'Anggota Aktif';
+        $pendaftaran->save();
+
+        return redirect()->route('pengurus.kelola-anggota-himati.index')->with('success', 'Calon anggota berhasil lulus interview dan menjadi anggota aktif.');
+    }
+
     public function kelolaAnggotaHimati()
     {
         $members = Pendaftaran::where('status', 'Anggota Aktif')->latest()->paginate(10);
-        return view('pengurus.kelola-anggota-himati.index', compact('members'));
+        $semua_divisi = Divisi::all();
+        return view('pengurus.kelola-anggota-himati.index', compact('members', 'semua_divisi'));
+    }
+
+    public function anggotaPerDivisi(Divisi $divisi)
+    {
+        $members = Pendaftaran::where('status', 'Anggota Aktif')
+                                ->where('divisi', $divisi->nama_divisi)
+                                ->latest()
+                                ->paginate(10);
+        $semua_divisi = Divisi::all();
+        return view('pengurus.kelola-anggota-himati.index', compact('members', 'divisi', 'semua_divisi'));
     }
 }

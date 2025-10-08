@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Divisi;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 
@@ -62,8 +63,20 @@ class AnggotaController extends Controller
     public function kelolaAnggotaHimati()
     {
         $members = Pendaftaran::where('status', 'Anggota Aktif')->latest()->paginate(10);
-        return view('admin.kelola-anggota-himati.index', compact('members'));
+        $semua_divisi = Divisi::all();
+        return view('admin.kelola-anggota-himati.index', compact('members', 'semua_divisi'));
     }
+
+    public function anggotaPerDivisi(Divisi $divisi)
+    {
+        $members = Pendaftaran::where('status', 'Anggota Aktif')
+                                ->where('divisi', $divisi->nama_divisi)
+                                ->latest()
+                                ->paginate(10);
+        $semua_divisi = Divisi::all();
+        return view('admin.kelola-anggota-himati.index', compact('members', 'divisi', 'semua_divisi'));
+    }
+
 
 
     public function update(Request $request, Pendaftaran $anggotum)
