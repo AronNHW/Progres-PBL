@@ -1,6 +1,6 @@
 @extends('layouts.user') {{-- Sesuaikan dengan layout utama Anda --}}
 
-@section('title', 'Data Prestasi Mahasiswa')
+@section('title', 'Data Prestasi')
 
 @push('styles')
 <style>
@@ -19,7 +19,7 @@
 
 @section('content')
 <div id="prestasi-page">
-    <h1 class="mb-4" style="font-size: 1.875rem; font-weight: 700;">Data Prestasi Mahasiswa</h1>
+    <h1 class="mb-4" style="font-size: 1.875rem; font-weight: 700;">Data Prestasi</h1>
 
     <div class="filter-bar">
         <form action="{{ route('user.prestasi') }}" method="GET" class="d-flex flex-wrap gap-3">

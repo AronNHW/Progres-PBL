@@ -53,8 +53,8 @@ Route::prefix('pengurus')->name('pengurus.')->group(function () {
         Route::post('calon-anggota/{pendaftaran}/reject', [AnggotaController::class, 'rejectCandidate'])->name('calon-anggota.reject');
         Route::get('calon-anggota-tahap-1', [AnggotaController::class, 'calonAnggotaTahap1'])->name('calon-anggota-tahap-1.index');
         Route::get('calon-anggota-tahap-2', [AnggotaController::class, 'calonAnggotaTahap2'])->name('calon-anggota-tahap-2.index');
-        Route::post('calon-anggota/{pendaftaran}/pass-interview', [AnggotaController::class, 'passInterview'])->name('calon-anggota.pass-interview');
-        Route::post('calon-anggota/{pendaftaran}/fail-interview', [AnggotaController::class, 'failInterview'])->name('calon-anggota.fail-interview');
+        Route::post('calon-anggota/{pendaftaran}/approve-stage-2', [AnggotaController::class, 'approveCandidateStage2'])->name('calon-anggota.approve-stage-2');
+        Route::post('calon-anggota/{pendaftaran}/reject-stage-2', [AnggotaController::class, 'rejectCandidateStage2'])->name('calon-anggota.reject-stage-2');
         Route::get('kelola-anggota-himati', [AnggotaController::class, 'kelolaAnggotaHimati'])->name('kelola-anggota-himati.index');
 
   Route::delete('/calon-anggota/{id}', [AnggotaController::class, 'destroy'])->name('calon-anggota.destroy');

@@ -20,7 +20,7 @@
           <summary><i class="fas fa-users nav-icon"></i><span class="menu-text">Data Anggota Hima-TI</span><i class="fas fa-chevron-down arrow-icon"></i></summary>
           <nav class="items">
             <a href="{{ route('pengurus.kelola-anggota-himati.index') }}" class="{{ request()->routeIs('pengurus.kelola-anggota-himati.index') ? 'active' : '' }}">Kelola Anggota</a>
-            <a href="{{ route('pengurus.calon-anggota.index') }}" class="{{ request()->routeIs('pengurus.calon-anggota.index') ? 'active' : '' }}">Pendaftaran Tahap 1</a>
+            <a href="{{ route('pengurus.calon-anggota.index') }}" class="{{ request()->routeIs('pengurus.calon-anggota.index') ? 'active' : '' }}">Pendaftaran Awal</a>
             <a href="{{ route('pengurus.calon-anggota-tahap-1.index') }}" class="{{ request()->routeIs('pengurus.calon-anggota-tahap-1.index') ? 'active' : '' }}">Hasil Tahap 1</a>
             <a href="{{ route('pengurus.calon-anggota-tahap-2.index') }}" class="{{ request()->routeIs('pengurus.calon-anggota-tahap-2.index') ? 'active' : '' }}">Hasil Tahap 2</a>
           </nav>

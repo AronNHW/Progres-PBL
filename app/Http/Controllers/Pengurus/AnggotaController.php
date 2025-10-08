@@ -11,9 +11,18 @@ class AnggotaController extends Controller
 
     public function calonAnggota()
     {
-        $candidates = Pendaftaran::whereNotIn('status', ['Approved Stage 1', 'Rejected Stage 1', 'Anggota Aktif', 'Gagal Wawancara'])->get();
+        $candidates = Pendaftaran::whereNotIn('status', ['Approved Stage 1', 'Rejected Stage 1', 'Anggota Aktif', 'Rejected Stage 2'])->get();
         return view('pengurus.calon-anggota.index', compact('candidates'));
     }
+
+    public function destroy($id)
+    {
+        $candidate = Pendaftaran::findOrFail($id);
+        $candidate->delete();
+
+        return redirect()->route('pengurus.calon-anggota.index')->with('success', 'Calon anggota berhasil dihapus.');
+    }
+
 
     public function calonAnggotaTahap1()
     {
@@ -43,20 +52,20 @@ class AnggotaController extends Controller
         return redirect()->back()->with('success', 'Calon anggota berhasil ditolak tahap 1.');
     }
 
-    public function passInterview(Pendaftaran $pendaftaran)
+    public function approveCandidateStage2(Pendaftaran $pendaftaran)
     {
         $pendaftaran->status = 'Anggota Aktif';
         $pendaftaran->save();
 
-        return redirect()->route('pengurus.calon-anggota-tahap-2.index')->with('success', 'Kandidat telah dikonfirmasi lulus wawancara dan menjadi anggota aktif.');
+        return redirect()->route('pengurus.calon-anggota-tahap-2.index')->with('success', 'Calon anggota berhasil diterima menjadi anggota aktif.');
     }
 
-    public function failInterview(Pendaftaran $pendaftaran)
+    public function rejectCandidateStage2(Pendaftaran $pendaftaran)
     {
-        $pendaftaran->status = 'Gagal Wawancara';
+        $pendaftaran->status = 'Rejected Stage 2';
         $pendaftaran->save();
 
-        return redirect()->route('pengurus.calon-anggota-tahap-2.index')->with('success', 'Kandidat telah dikonfirmasi tidak lulus wawancara.');
+        return redirect()->route('pengurus.calon-anggota-tahap-2.index')->with('success', 'Calon anggota berhasil ditolak pada tahap 2.');
     }
 
     public function kelolaAnggotaHimati()
