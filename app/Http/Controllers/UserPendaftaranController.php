@@ -25,6 +25,6 @@ class UserPendaftaranController extends Controller
             'alasan_bergabung' => $request->alasan,
         ]);
 
-        return redirect()->route('user.pendaftaran')->with('success', 'Pendaftaran berhasil! Terima kasih telah mendaftar.');
+        return redirect()->route('user.pendaftaran')->with('success', 'Pendaftaran berhasil! Terima kasih telah mendaftar.')->withFragment('pendaftaran-form');
     }
 }

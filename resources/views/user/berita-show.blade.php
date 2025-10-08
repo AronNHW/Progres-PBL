@@ -13,7 +13,12 @@
             </div>
         </div>
 
-        <div class="komentar-section">
+        <div id="komentar-section" class="komentar-section">
+            @if(session('success'))
+                <div class="alert alert-success" style="background-color: #dcfce7; color: #166534; padding: 1rem; border-radius: 0.375rem; margin-bottom: 1.5rem;">
+                    {{ session('success') }}
+                </div>
+            @endif
             <h2 class="komentar-title">Komentar</h2>
             <form action="{{ route('user.komentar.store', $berita->id) }}" method="POST">
                 @csrf

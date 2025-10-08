@@ -98,7 +98,7 @@
 @endpush
 
 @section('content')
-<div class="pendaftaran-card">
+<div id="pendaftaran-form" class="pendaftaran-card">
     <div class="pendaftaran-header">
         <h4>Formulir Pendaftaran Pengurus HIMA TI</h4>
         <p>Silakan isi form berikut untuk mendaftar sebagai pengurus HIMA TI.</p>
