@@ -47,14 +47,29 @@ class PrestasiController extends Controller
             'periode' => 'required|string|max:50',
         ]);
 
-        $prestasi->update($request->all());
+        Prestasi::create($request->all());
 
-        return redirect()->route('admin.prestasi.index')->with('success', 'Prestasi berhasil diperbarui.');
+        return redirect()->route('admin.prestasi.index')->with('success', 'Prestasi berhasil ditambahkan.');
     }
 
     public function destroy(Prestasi $prestasi)
     {
         $prestasi->delete();
         return redirect()->route('admin.prestasi.index')->with('success', 'Prestasi berhasil dihapus.');
+    }
+
+    public function update(Request $request, Prestasi $prestasi)
+    {
+        $request->validate([
+            'nim' => 'required|string|max:20',
+            'nama' => 'required|string|max:255',
+            'sistem_kuliah' => 'required|string|max:50',
+            'ipk' => 'required|numeric|min:0|max:4',
+            'periode' => 'required|string|max:50',
+        ]);
+
+        $prestasi->update($request->all());
+
+        return redirect()->route('admin.prestasi.index')->with('success', 'Prestasi berhasil diperbarui.');
     }
 }

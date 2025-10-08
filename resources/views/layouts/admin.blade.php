@@ -44,6 +44,20 @@
       sidebar.classList.toggle('collapsed');
       mainContent.classList.toggle('expanded');
     });
+
+    const currentUrl = window.location.href;
+    const sidebarNav = document.querySelector('.sidebar-nav');
+    if (sidebarNav) {
+      const navLinks = sidebarNav.querySelectorAll('a');
+      navLinks.forEach(link => {
+        if (link.href === currentUrl) {
+          let parent = link.closest('details');
+          if (parent) {
+            parent.setAttribute('open', true);
+          }
+        }
+      });
+    }
   });
 </script>
 </body>

@@ -89,3 +89,85 @@ ul{list-style:none}
     margin-left: 88px;
     width: calc(100% - 88px);
 }
+
+/* Custom styling for <details> dropdown in sidebar */
+.sidebar-nav details {
+    width: 100%;
+}
+
+.sidebar-nav details summary {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    cursor: pointer;
+    list-style: none; /* Remove default marker */
+    width: 100%;
+    background: none;
+    border: none;
+    transition: background-color .3s,color .3s;
+}
+
+.sidebar-nav details summary::-webkit-details-marker {
+    display: none; /* Remove default marker for Chrome/Safari */
+}
+
+.sidebar-nav details summary .nav-icon {
+    margin-right: 15px;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    color: #6c757d;
+}
+
+.sidebar-nav details summary:hover {
+    background-color: #e9ecef;
+    color: #0d6efd;
+}
+
+.sidebar-nav details summary:hover .nav-icon,
+.sidebar-nav details[open] > summary .nav-icon {
+    color: #0d6efd;
+}
+
+.sidebar-nav details[open] > summary {
+    background-color: #e9ecef;
+    color: #0d6efd;
+}
+
+.sidebar-nav details .items {
+    padding-left: 30px; /* Indent the submenu items */
+}
+
+.sidebar-nav details .items a {
+    display: block;
+    padding: 8px 15px;
+    color: #495057;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sidebar-nav details .items a:hover {
+    color: #0d6efd;
+}
+
+.sidebar-nav details summary .arrow-icon {
+    margin-left: auto;
+    transition: transform 0.3s;
+}
+
+.sidebar-nav details[open] > summary .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.sidebar.collapsed .sidebar-nav details summary {
+    justify-content: center; /* Center the content of the summary */
+    padding: 10px 0; /* Adjust padding for collapsed state */
+}
+
+.sidebar.collapsed .sidebar-nav details summary .nav-icon {
+    margin-right: 0; /* Remove margin for collapsed state */
+}
