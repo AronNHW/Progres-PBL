@@ -26,15 +26,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('aspirasi', AdminAspirasiController::class)->only(['index', 'show', 'destroy']);
     Route::resource('berita', AdminBeritaController::class);
     Route::resource('prestasi', AdminPrestasiController::class)->except(['create', 'show', 'edit']);
+    Route::resource('anggota', AdminAnggotaController::class);
     Route::view('/mahasiswa-bermasalah', 'admin.bermasalah.index')->name('mahasiswa-bermasalah');
 
-    Route::get('/kelola-anggota-himati', [AdminAnggotaController::class, 'index'])->name('kelola-anggota-himati.index');
+    Route::get('/kelola-anggota-himati', [AdminAnggotaController::class, 'kelolaAnggotaHimati'])->name('kelola-anggota-himati.index');
     Route::get('/calon-anggota', [AdminAnggotaController::class, 'calonAnggota'])->name('calon-anggota.index');
     Route::post('calon-anggota/{pendaftaran}/approve', [AdminAnggotaController::class, 'approveCandidate'])->name('calon-anggota.approve');
     Route::post('calon-anggota/{pendaftaran}/reject', [AdminAnggotaController::class, 'rejectCandidate'])->name('calon-anggota.reject');
     Route::get('/calon-anggota-tahap-1', [AdminAnggotaController::class, 'calonAnggotaTahap1'])->name('calon-anggota-tahap-1.index');
     Route::get('/calon-anggota-tahap-2', [AdminAnggotaController::class, 'calonAnggotaTahap2'])->name('calon-anggota-tahap-2.index');
-
+    Route::post('calon-anggota/{pendaftaran}/pass-interview', [AdminAnggotaController::class, 'passInterview'])->name('calon-anggota.pass-interview');
+    Route::post('calon-anggota/{pendaftaran}/fail-interview', [AdminAnggotaController::class, 'failInterview'])->name('calon-anggota.fail-interview');
     Route::delete('/calon-anggota/{id}', [AdminAnggotaController::class, 'destroy'])->name('calon-anggota.destroy');
 });
 
@@ -51,6 +53,8 @@ Route::prefix('pengurus')->name('pengurus.')->group(function () {
         Route::post('calon-anggota/{pendaftaran}/reject', [AnggotaController::class, 'rejectCandidate'])->name('calon-anggota.reject');
         Route::get('calon-anggota-tahap-1', [AnggotaController::class, 'calonAnggotaTahap1'])->name('calon-anggota-tahap-1.index');
         Route::get('calon-anggota-tahap-2', [AnggotaController::class, 'calonAnggotaTahap2'])->name('calon-anggota-tahap-2.index');
+        Route::post('calon-anggota/{pendaftaran}/pass-interview', [AnggotaController::class, 'passInterview'])->name('calon-anggota.pass-interview');
+        Route::post('calon-anggota/{pendaftaran}/fail-interview', [AnggotaController::class, 'failInterview'])->name('calon-anggota.fail-interview');
         Route::get('kelola-anggota-himati', [AnggotaController::class, 'kelolaAnggotaHimati'])->name('kelola-anggota-himati.index');
 
   Route::delete('/calon-anggota/{id}', [AnggotaController::class, 'destroy'])->name('calon-anggota.destroy');

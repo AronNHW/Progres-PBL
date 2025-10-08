@@ -73,6 +73,12 @@
 <div id="calon-anggota-page">
     <h1>Data Calon Anggota Hima-TI</h1>
 
+    @if(session('success'))
+        <div class="alert alert-success" style="background-color: #dcfce7; color: #166534; padding: 1rem; border-radius: 0.375rem; margin-bottom: 1.5rem;">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <section class="data-table-container">
         <table class="table data-table">
             <thead>
@@ -93,8 +99,8 @@
                         <td>{{ $candidate->hp ?? 'N/A' }}</td>
                         <td>{{ $candidate->divisi }}</td>
                         <td>
-                            <span class="status-badge @if($candidate->status == 'Approved') status-approved @elseif($candidate->status == 'Rejected') status-rejected @else status-pending @endif">
-                                {{ $candidate->status }}
+                            <span class="status-badge status-pending">
+                                Menunggu
                             </span>
                         </td>
                         <td class="action-btns">

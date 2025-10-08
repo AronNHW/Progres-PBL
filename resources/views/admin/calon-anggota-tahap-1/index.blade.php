@@ -60,8 +60,24 @@
     #calon-anggota-page .custom-modal-close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
     #calon-anggota-page .custom-modal-close:hover, #calon-anggota-page .custom-modal-close:focus { color: black; text-decoration: none; }
     #calon-anggota-page .modal-body-content { padding-top: 20px; }
-    #calon-anggota-page .candidate-info { display: flex; margin-bottom: 12px; font-size: 1rem; }
-    #calon-anggota-page .candidate-info strong { width: 120px; font-weight: 600; color: #4b5563; }
+    #calon-anggota-page .candidate-info {
+        display: grid;
+        grid-template-columns: 160px auto;
+        gap: 0 1rem;
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+        align-items: start;
+    }
+    #calon-anggota-page .candidate-info strong {
+        font-weight: 600;
+        color: #4b5563;
+        position: relative;
+    }
+    #calon-anggota-page .candidate-info strong::after {
+        content: ':';
+        position: absolute;
+        right: 0;
+    }
     #calon-anggota-page .modal-footer-buttons { text-align: right; margin-top: 20px; }
     #calon-anggota-page .modal-footer-buttons button { margin-left: 10px; padding: 10px 18px; border-radius: 8px; cursor: pointer; border: none; font-weight: 600; }
     #calon-anggota-page .btn-danger { background-color: var(--danger-color); color: white; }
@@ -94,7 +110,13 @@
                         <td>{{ $candidate->divisi }}</td>
                         <td>
                             <span class="status-badge @if($candidate->status == 'Approved Stage 1') status-approved @elseif($candidate->status == 'Rejected Stage 1') status-rejected @else status-pending @endif">
-                                {{ $candidate->status }}
+                                @if($candidate->status == 'Approved Stage 1')
+                                    Diterima Tahap 1
+                                @elseif($candidate->status == 'Rejected Stage 1')
+                                    Ditolak Tahap 1
+                                @else
+                                    {{ $candidate->status }}
+                                @endif
                             </span>
                         </td>
                         <td class="action-btns">
@@ -116,12 +138,12 @@
             <span class="custom-modal-close">&times;</span>
             <h2>Detail Calon Anggota Tahap 1</h2>
             <div class="modal-body-content">
-                <div class="candidate-info"><strong>Nama:</strong> <span id="view_name"></span></div>
-                <div class="candidate-info"><strong>NIM:</strong> <span id="view_nim"></span></div>
-                <div class="candidate-info"><strong>Nomor HP:</strong> <span id="view_hp"></span></div>
-                <div class="candidate-info"><strong>Divisi Tujuan:</strong> <span id="view_divisi"></span></div>
-                <div class="candidate-info"><strong>Alasan Bergabung:</strong> <span id="view_alasan_bergabung"></span></div>
-                <div class="candidate-info"><strong>Status:</strong> <span id="view_status"></span></div>
+                <div class="candidate-info"><strong>Nama</strong> <span id="view_name"></span></div>
+                <div class="candidate-info"><strong>NIM</strong> <span id="view_nim"></span></div>
+                <div class="candidate-info"><strong>Nomor HP</strong> <span id="view_hp"></span></div>
+                <div class="candidate-info"><strong>Divisi Tujuan</strong> <span id="view_divisi"></span></div>
+                <div class="candidate-info"><strong>Alasan Bergabung</strong> <span id="view_alasan_bergabung"></span></div>
+                <div class="candidate-info"><strong>Status</strong> <span id="view_status"></span></div>
             </div>
         </div>
     </div>

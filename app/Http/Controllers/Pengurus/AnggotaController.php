@@ -11,18 +11,9 @@ class AnggotaController extends Controller
 
     public function calonAnggota()
     {
-        $candidates = Pendaftaran::whereNotIn('status', ['Approved Stage 1', 'Rejected Stage 1'])->get();
+        $candidates = Pendaftaran::whereNotIn('status', ['Approved Stage 1', 'Rejected Stage 1', 'Anggota Aktif', 'Gagal Wawancara'])->get();
         return view('pengurus.calon-anggota.index', compact('candidates'));
     }
-
-    public function destroy($id)
-    {
-        $candidate = Pendaftaran::findOrFail($id);
-        $candidate->delete();
-
-        return redirect()->route('pengurus.calon-anggota.index')->with('success', 'Calon anggota berhasil dihapus.');
-    }
-
 
     public function calonAnggotaTahap1()
     {
@@ -52,8 +43,25 @@ class AnggotaController extends Controller
         return redirect()->back()->with('success', 'Calon anggota berhasil ditolak tahap 1.');
     }
 
+    public function passInterview(Pendaftaran $pendaftaran)
+    {
+        $pendaftaran->status = 'Anggota Aktif';
+        $pendaftaran->save();
+
+        return redirect()->route('pengurus.calon-anggota-tahap-2.index')->with('success', 'Kandidat telah dikonfirmasi lulus wawancara dan menjadi anggota aktif.');
+    }
+
+    public function failInterview(Pendaftaran $pendaftaran)
+    {
+        $pendaftaran->status = 'Gagal Wawancara';
+        $pendaftaran->save();
+
+        return redirect()->route('pengurus.calon-anggota-tahap-2.index')->with('success', 'Kandidat telah dikonfirmasi tidak lulus wawancara.');
+    }
+
     public function kelolaAnggotaHimati()
     {
-        return view('pengurus.kelola-anggota-himati.index');
+        $members = Pendaftaran::where('status', 'Anggota Aktif')->latest()->paginate(10);
+        return view('pengurus.kelola-anggota-himati.index', compact('members'));
     }
 }
