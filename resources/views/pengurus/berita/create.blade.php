@@ -1,0 +1,73 @@
+@extends('layouts.pengurus')
+
+@section('title', 'Tambah Berita')
+
+@section('content')
+    <h1>Tambah Berita</h1>
+
+    <div class="form-container">
+        <form action="{{ route('pengurus.berita.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+                <label for="judul_berita">Judul Berita</label>
+                <input type="text" id="judul_berita" name="judul_berita" value="{{ old('judul_berita') }}" required>
+                @error('judul_berita')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="deskripsi">Deskripsi</label>
+                <textarea id="deskripsi" name="deskripsi" rows="6" required>{{ old('deskripsi') }}</textarea>
+                @error('deskripsi')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="foto_berita">Foto Berita</label>
+                <input type="file" id="foto_berita" name="foto_berita" accept="image/*" required>
+                @error('foto_berita')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn-submit">Simpan</button>
+        </form>
+    </div>
+@endsection
+
+@push('styles')
+<style>
+.form-container {background-color: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);}
+.form-group {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    row-gap: 6px;
+    column-gap: 1rem;
+    margin-bottom: 20px;
+}
+.form-group label {
+    font-weight: 600;
+    color: #4b5563;
+}
+.form-group:has(textarea) label {
+    align-self: start;
+    padding-top: 10px;
+}
+.form-group input[type="text"], .form-group textarea, .form-group input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    grid-column: 2;
+}
+.form-group .error-message {
+    grid-column: 2;
+    color: #ef4444;
+    font-size: 0.875rem;
+}
+.btn-submit {background-color: #22c55e; color: #fff; padding: 12px 20px; border: 0; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 1rem; margin-left: calc(120px + 1rem); }
+</style>
+@endpush
