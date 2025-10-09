@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Pengurus;
 use App\Http\Controllers\Controller;
 use App\Models\Aspirasi;
 use App\Models\Berita;
+use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +14,8 @@ class DashboardController extends Controller
     {
         $beritaCount = Berita::count();
         $aspirasiCount = Aspirasi::count();
+        $anggotaCount = Pendaftaran::where('status', 'Anggota Aktif')->count();
 
-        return view('pengurus.dashboard', compact('beritaCount', 'aspirasiCount'));
+        return view('pengurus.dashboard', compact('beritaCount', 'aspirasiCount', 'anggotaCount'));
     }
 }

@@ -126,12 +126,11 @@
                 </div>
                 <div class="col-md-6">
                     <label for="divisi" class="form-label">Divisi Tujuan</label>
-                    <select id="divisi" name="divisi" class="form-select" required>
+                    <select id="divisi" name="divisi_id" class="form-select" required>
                         <option selected disabled value="">Pilih Divisi...</option>
-                        <option value="kaderisasi">Kaderisasi</option>
-                        <option value="media_informasi">Media Informasi</option>
-                        <option value="technopreneurship">Technopreneurship</option>
-                        <option value="public_relation">Public Relation</option>
+                        @foreach($divisis as $div)
+                            <option value="{{ $div->id }}">{{ $div->nama_divisi }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-12">

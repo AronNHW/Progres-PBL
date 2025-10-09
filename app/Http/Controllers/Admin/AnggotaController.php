@@ -70,7 +70,7 @@ class AnggotaController extends Controller
     public function anggotaPerDivisi(Divisi $divisi)
     {
         $members = Pendaftaran::where('status', 'Anggota Aktif')
-                                ->where('divisi', $divisi->nama_divisi)
+                                ->where('divisi_id', $divisi->id)
                                 ->latest()
                                 ->paginate(10);
         $semua_divisi = Divisi::all();
@@ -85,10 +85,10 @@ class AnggotaController extends Controller
             'name' => 'required|string|max:255',
             'nim' => 'required|string|max:255',
             'hp' => 'required|string|max:255',
-            'divisi' => 'required|string|max:255',
+            'divisi_id' => 'required|exists:divisis,id',
         ]);
 
-        $anggotum->update($request->only(['name', 'nim', 'hp', 'divisi']));
+        $anggotum->update($request->only(['name', 'nim', 'hp', 'divisi_id']));
 
         return redirect()->route('admin.kelola-anggota-himati.index')->with('success', 'Data anggota berhasil diperbarui.');
     }

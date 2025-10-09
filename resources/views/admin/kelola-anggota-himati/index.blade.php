@@ -65,7 +65,7 @@
                         <td>{{ $member->name }}</td>
                         <td>{{ $member->nim ?? 'N/A' }}</td>
                         <td>{{ $member->hp ?? 'N/A' }}</td>
-                        <td>{{ $member->divisi }}</td>
+                        <td>{{ $member->divisi->nama_divisi ?? 'N/A' }}</td>
                         <td>{{ $member->updated_at->translatedFormat('d F Y') }}</td>
                         <td class="action-btns">
                             <button type="button" class="btn btn-blue view-btn" data-member='{{ json_encode($member) }}'>Lihat</button>
@@ -130,9 +130,9 @@
             </div>
             <div class="form-group">
                 <label for="edit_divisi">Divisi</label>
-                <select id="edit_divisi" name="divisi" required>
+                <select id="edit_divisi" name="divisi_id" required>
                     @foreach($semua_divisi as $div)
-                        <option value="{{ $div->nama_divisi }}">{{ $div->nama_divisi }}</option>
+                        <option value="{{ $div->id }}">{{ $div->nama_divisi }}</option>
                     @endforeach
                 </select>
             </div>
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('view_name').textContent = member.name;
             document.getElementById('view_nim').textContent = member.nim;
             document.getElementById('view_hp').textContent = member.hp;
-            document.getElementById('view_divisi').textContent = member.divisi;
+            document.getElementById('view_divisi').textContent = member.divisi ? member.divisi.nama_divisi : 'N/A';
             document.getElementById('view_alasan_bergabung').textContent = member.alasan_bergabung;
             document.getElementById('view_status').textContent = member.status;
             document.getElementById('view_joined_at').textContent = new Date(member.updated_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('edit_name').value = member.name;
             document.getElementById('edit_nim').value = member.nim;
             document.getElementById('edit_hp').value = member.hp;
-            document.getElementById('edit_divisi').value = member.divisi;
+            document.getElementById('edit_divisi').value = member.divisi_id;
             
             editModal.style.display = 'block';
         });

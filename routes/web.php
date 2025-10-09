@@ -18,6 +18,8 @@ use App\Http\Controllers\Pengurus\AnggotaController;
 use App\Http\Controllers\Pengurus\DivisiController as PengurusDivisiController;
 use App\Http\Controllers\UserPendaftaranController;
 use App\Http\Controllers\UserDivisiController;
+use App\Http\Controllers\GoogleController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -78,9 +80,12 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/berita', [UserBeritaController::class, 'index'])->name('berita');
     Route::get('/berita/{berita}', [UserBeritaController::class, 'show'])->name('berita.show');
     Route::post('/berita/{berita}/komentar', [UserBeritaController::class, 'storeKomentar'])->name('komentar.store');
-    Route::view('/pendaftaran', 'user.pendaftaran')->name('pendaftaran');
+    Route::get('/pendaftaran', [UserPendaftaranController::class, 'showPendaftaranForm'])->name('pendaftaran');
     Route::post('/pendaftaran', [UserPendaftaranController::class, 'store'])->name('pendaftaran.store');
     Route::get('/prestasi', [UserPrestasiController::class, 'index'])->name('prestasi');
     Route::view('/aspirasi', 'user.aspirasi')->name('aspirasi');
     Route::post('/aspirasi', [AspirasiUserController::class, 'store'])->name('aspirasi.store');
 });
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

@@ -87,7 +87,7 @@ class AnggotaController extends Controller
     public function anggotaPerDivisi(Divisi $divisi)
     {
         $members = Pendaftaran::where('status', 'Anggota Aktif')
-                                ->where('divisi', $divisi->nama_divisi)
+                                ->where('divisi_id', $divisi->id)
                                 ->latest()
                                 ->paginate(10);
         $semua_divisi = Divisi::all();

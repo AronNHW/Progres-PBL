@@ -16,7 +16,7 @@
 
       <li><a href="#"><i class="fas fa-user nav-icon"></i><span class="menu-text"> Data Pengguna</span></a></li>
       <li>
-        <details>
+        <details {{ request()->routeIs(['admin.kelola-anggota-himati.index', 'admin.calon-anggota.index', 'admin.calon-anggota-tahap-1.index', 'admin.calon-anggota-tahap-2.index']) ? 'open' : '' }}>
           <summary><i class="fas fa-users nav-icon"></i><span class="menu-text">Data Anggota Hima-TI</span><i class="fas fa-chevron-down arrow-icon"></i></summary>
           <nav class="items">
             <a href="{{ route('admin.kelola-anggota-himati.index') }}" class="{{ request()->routeIs('admin.kelola-anggota-himati.index') ? 'active' : '' }}">Kelola Anggota</a>

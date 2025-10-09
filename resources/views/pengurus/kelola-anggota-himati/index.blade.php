@@ -41,7 +41,7 @@
                         <td>{{ $member->name }}</td>
                         <td>{{ $member->nim ?? 'N/A' }}</td>
                         <td>{{ $member->hp ?? 'N/A' }}</td>
-                        <td>{{ $member->divisi }}</td>
+                        <td>{{ $member->divisi->nama_divisi ?? 'N/A' }}</td>
                         <td>{{ $member->updated_at->translatedFormat('d F Y') }}</td>
                     </tr>
                 @empty
